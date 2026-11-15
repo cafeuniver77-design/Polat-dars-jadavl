@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101b36">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png"><title>Normuroz Jonbolatning dars jadvali</title>
+<style>
+:root{--bg:#f3f6fc;--card:#fff;--ink:#17233d;--muted:#71809b;--blue:#315efb;--navy:#101b36;--line:#e8edf5;--mint:#e9fbf3;--green:#13885b;--amber:#fff5df;--orange:#9a6200}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:radial-gradient(circle at 90% 0,#3c63d8 0,transparent 36%),linear-gradient(135deg,#101b36,#1c3678);color:#fff;padding:24px 18px 27px;border-radius:0 0 28px 28px}
+.wrap{max-width:720px;margin:auto}.brand{display:flex;align-items:center;gap:13px}.logo{height:52px;width:52px;border-radius:17px;background:#ffffff1c;border:1px solid #ffffff35;display:grid;place-items:center;font-size:26px}.brand h1{font-size:17px;line-height:1.2;margin:0;font-weight:850}.brand p{font-size:11px;color:#d6e0ff;margin:5px 0 0}.sub{margin-top:24px;color:#cbd8ff;font-size:12px}.hero{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-top:6px}.hero h2{font-size:26px;line-height:1.15;margin:0}.tag{border:1px solid #ffffff40;background:#ffffff18;border-radius:30px;padding:7px 10px;font-size:10px;white-space:nowrap}
+main{max-width:720px;margin:auto;padding:18px 14px 34px}.datebar{display:flex;align-items:center;justify-content:space-between;margin:3px 2px 13px}.datebar b{font-size:14px}.datebar span{font-size:11px;color:var(--muted)}
+.days{display:flex;gap:7px;overflow:auto;padding:2px 1px 13px;scrollbar-width:none}.day{border:1px solid var(--line);background:var(--card);color:#52617c;border-radius:13px;padding:10px 13px;font-weight:750;font-size:12px;white-space:nowrap}.day.active{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 5px 14px #315efb35}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:3px 0 17px}.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}.stat small{color:var(--muted);font-size:10px}.stat strong{display:block;font-size:17px;margin-top:3px}
+.listhead{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px}.listhead b{font-size:15px}.listhead span{font-size:10px;color:var(--muted)}
+.lesson{display:flex;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:17px;padding:13px;margin-bottom:9px;box-shadow:0 4px 13px #18284a08}.num{width:39px;height:39px;flex:none;border-radius:12px;background:#edf2ff;color:var(--blue);display:grid;place-items:center;font-weight:850;font-size:12px}.body{min-width:0;flex:1}.subject{font-size:14px;font-weight:820;line-height:1.35}.time{font-size:11px;color:var(--blue);font-weight:750;margin-top:5px}.meta{display:flex;flex-wrap:wrap;gap:8px 13px;margin-top:8px;color:#687791;font-size:10px}.meta span{display:inline-flex;gap:4px;align-items:center}.flag{font-size:9px;font-weight:800;border-radius:20px;padding:5px 8px;align-self:flex-start;white-space:nowrap;background:var(--mint);color:var(--green)}.uncertain{background:var(--amber);color:var(--orange)}
+.empty{padding:25px;background:var(--card);border:1px dashed #ccd5e5;border-radius:16px;color:var(--muted);text-align:center;font-size:13px}
+.notice{background:#fff9e9;border:1px solid #f2dfb4;color:#75521a;padding:12px 13px;border-radius:14px;font-size:11px;line-height:1.5;margin-top:16px}.footer{text-align:center;color:#99a4b8;font-size:10px;margin-top:20px}
+@media(min-width:600px){header{padding-left:26px;padding-right:26px}main{padding-left:22px;padding-right:22px}}
+</style></head>
+<body>
+<header><div class="wrap">
+ <div class="brand"><div class="logo">🎓</div><div><h1>NORMUROZ JONBOLATNING<br>DARS JADVALI</h1><p>TerDU akademik litseyi · 102-guruh · A guruhi</p></div></div>
+ <div class="sub" id="today"></div><div class="hero"><h2 id="dayTitle">Bugungi darslar</h2><span class="tag">2026–2027 o‘quv yili</span></div>
+</div></header>
+<main>
+ <div class="datebar"><b>Hafta kunini tanlang</b><span>Kerakli kunni bosing</span></div>
+ <nav class="days" id="days"></nav>
+ <div class="stats"><div class="stat"><small>Tanlangan kun</small><strong id="lessonCount">0 ta dars</strong></div><div class="stat"><small>Guruh</small><strong>A guruhi · 102</strong></div></div>
+ <div class="listhead"><b id="listTitle">Darslar ro‘yxati</b><span>Fan · vaqt · xona · o‘qituvchi</span></div>
+ <section id="lessons"></section>
+ <div class="notice"><b>Tekshirish kerak bo‘lgan joylar:</b> asl jadval suratida seshanba 1-darsdagi Biologiya/Kimyo hamda juma 1- va 3-darsdagi juft fanlar A/B deb aniq belgilanmagan. Ilovada bu joylar taxmin qilinmadi va sariq belgi bilan ko‘rsatildi. Litsey jadvalidan tasdiqlab ol.</div>
+ <div class="footer">Normuroz Jonbolatning dars jadvali · Shaxsiy o‘quv yordamchisi</div>
+</main>
+<script>
+const data={
+"Dushanba":[
+["0-dars","Kelajak soati","08:00–08:40","212","Valmurodov Yo.","aniq"],
+["1-dars","Mexanika va molekulyar fizika","08:45–10:05","212","Abduqodirov J.","A"],
+["2-dars","Jismoniy tarbiya","10:15–11:35","Sport zal","Qoraqulov S.","aniq"],
+["3-dars","Algebra","12:05–13:25","212","Mahmudov A.","A"]
+],
+"Seshanba":[
+["1-dars","Biologiya / Kimyo — A guruhi ekanini tasdiqlash kerak","08:00–09:20","212","Berdishukurova B. / Xaydarova X.","?"],
+["2-dars","Mexanika va molekulyar fizika","09:30–10:50","212","Abduqodirov J.","A"],
+["3-dars","Xorijiy til","11:00–12:20","212","Normurodov A.","A"]
+],
+"Chorshanba":[
+["1-dars","Geometriya","08:00–09:20","212","Ergashev Q.","A"],
+["2-dars","Algebra","09:30–10:50","212","Mahmudov A.","A"],
+["3-dars","Geografiya","11:00–12:20","212","Tilovqobilov E.","aniq"]
+],
+"Payshanba":[
+["1-dars","Geometriya","08:00–09:20","106","Ergashev Q.","A"],
+["2-dars","Xorijiy til","09:30–10:50","212","Normurodov A.","A"],
+["3-dars","Informatika va axborot texnologiyalari","11:00–12:20","212","Mirzayev O.","A"]
+],
+"Juma":[
+["1-dars","Adabiyot / Huquq — A guruhi ekanini tasdiqlash kerak","08:00–09:20","212","Qudratov D. / Nurxonov M.","?"],
+["2-dars","Rus tili","09:30–10:50","304","Obidova N.","A"],
+["3-dars","Tarbiya / Jahon tarixi — A guruhi ekanini tasdiqlash kerak","11:00–12:20","212","Nurxonov M. / Abdulakimova D.","?"]
+],
+"Shanba":[
+["1-dars","Algebra","08:00–09:20","212","Mahmudov A.","A"],
+["2-dars","Ona tili","09:30–10:50","212","Shaymordanova Z.","aniq"],
+["3-dars","Mexanika va molekulyar fizika","11:00–12:20","101","Abduqodirov J.","A"]
+]};
+const order=Object.keys(data), weekdays=["Yakshanba","Dushanba","Seshanba","Chorshanba","Payshanba","Juma","Shanba"];
+let chosen=weekdays[new Date().getDay()];if(!data[chosen])chosen="Dushanba";
+const nav=document.getElementById("days"),box=document.getElementById("lessons");
+function draw(){
+ nav.innerHTML="";
+ order.forEach(d=>{let b=document.createElement("button");b.className="day"+(chosen===d?" active":"");b.textContent=d;b.onclick=()=>{chosen=d;draw()};nav.appendChild(b)});
+ document.getElementById("dayTitle").textContent=chosen;
+ document.getElementById("listTitle").textContent=chosen+" kungi darslar";
+ document.getElementById("lessonCount").textContent=data[chosen].length+" ta dars";
+ box.innerHTML="";
+ data[chosen].forEach((x,i)=>{let el=document.createElement("article");el.className="lesson";
+ let flag=x[5]==="?"?'<span class="flag uncertain">ANIQLASHTIRISH KERAK</span>':(x[5]==="A"?'<span class="flag">A GURUHI</span>':'');
+ el.innerHTML=`<div class="num">${x[0].replace("-dars","")}</div><div class="body"><div class="subject">${x[1]}</div><div class="time">◷ ${x[2]}</div><div class="meta"><span>📍 Xona: ${x[3]}</span><span>👨‍🏫 ${x[4]}</span></div></div>${flag}`;
+ box.appendChild(el)});
+}
+let now=new Date();document.getElementById("today").textContent=now.toLocaleDateString("uz-UZ",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+draw();
+</script><script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}</script>
+</body></html>
